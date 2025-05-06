@@ -1,15 +1,20 @@
-import { CustomerList } from "./components/tickets/customers/customerList.jsx"
-
-
-import "./app.css"
-import { TicketList } from "./components/tickets/ticketList.jsx"
-import { EmployeeList } from "./components/tickets/employees/employeeListState.jsx"
+import { Routes, Route,} from "react-router-dom";
+import "./app.css";
+import { Login } from "./components/auth/Login.jsx";
+import { Register } from "./components/auth/Register.jsx";
+import { Authorized } from "./views/Authorized.jsx";
+import { ApplicationViews } from "./views/ApplicationViews.jsx";
 
 export const App = () => {
-  return <div>
-    {/* <TicketList/> */}
-    {/* <CustomerList/> */}
-    <EmployeeList/>
-  </div>
-}
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
+      <Route path="*" element={
+        <Authorized>
+        <ApplicationViews/>
+      </Authorized>}/>
+    </Routes>
+  );
+};
